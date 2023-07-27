@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href={% static 'img/favicon.ico' %} type="image/x-icon">
+
+    {% comment %} Bootstrap y CSS base {% endcomment %}
+    <link rel="stylesheet" href={% static 'css/bootstrap.min.5.3.0.css' %}>
+    <link rel="stylesheet" href={% static 'img/bootstrap-icons/font/bootstrap-icons.min.css' %}>
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+
+    {% comment %} Bloque de links {% endcomment %}
+    {% block links %}{% endblock links %}
+
+    <title>
+        {% block title %}{% endblock title %}
+    </title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {% elif message.tags == 'warning' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {% elif message.tags == 'success' %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% elif message.tags == 'info' %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {% else %}
+                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            {% endif %}
+            {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+        {% endfor %}
+    {% endif %}
+    {% include 'menu/menu.html' %}
+    {% block body %}{% endblock body %}
+    
+    {% comment %} Bootstrap JS {% endcomment %}
+    <script src="{% static 'js/bootstrap.bundle.min.5.3.0.js' %}"></script>
+    
+    {% comment %} Bloque de scripts {% endcomment %}
+    <script src="{% static 'js/base/base.js' %}"></script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>

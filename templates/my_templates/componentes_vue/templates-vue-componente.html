@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% comment %}Para añadir componente creado en js{% endcomment %}
+
+{% comment %} Bloque de links {% endcomment %}
+{% block links %}
+{% endblock links %}
+
+{% block title %}
+  Con vue
+{% endblock title %}
+
+{% block body %}
+
+<div id="app">
+</div>
+
+<div id="gra">
+</div>
+
+{% endblock body %}
+
+{% comment %} Bloque de scripts {% endcomment %}
+{% block scripts %}
+
+{% comment %} chartjs {% endcomment %}
+<script src="{% static 'js/chart.umd.min.4.2.1.js' %}"></script>
+
+{% comment %} ===== Axios ===== {% endcomment %}
+<script src="{% static 'js/axios.min.1.3.5.js' %}">
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  axios.defaults.headers.common['X-CSRFToken'] = csrftoken
+</script>
+
+  {% comment %} ruta componente {% endcomment %}
+  <script>
+    const urlHtmlComponente = "{{ url_html_componente }}"
+    const urlHtmlGrafico = "{{ url_html_grafico }}"
+    const urlApi = "{{ url_api }}"
+  </script>
+
+  {% comment %} ===== Vue ===== {% endcomment %}
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "{% static 'js/vue.esm-browser.min.3.2.47.js' %}"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { createApp } from "vue"
+    import MiApp from "{% static 'js/vue-components/mi-componente.js' %}"
+    import MiGra from "{% static 'js/vue-components/mi-grafico.js' %}"
+
+    createApp(MiApp).mount("#app")
+    createApp(MiGra).mount("#gra")
+  </script>
+
+{% endblock scripts %}

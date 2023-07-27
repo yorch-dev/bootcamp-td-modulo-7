@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Registro de usuario
+{% endblock title %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 mx-auto">
+            <div class="card p-3 mx-auto">
+            <h2 class="text-center">Registrar nuevo usuario</h2>
+            <form method="POST">
+              {% csrf_token %}
+              {{ form | crispy }}
+              <button class="btn btn-secondary" type="submit">Registrar</button>
+            </form>
+            <p class="mt-3 mx-auto">
+              Si ya tienes una cuenta, puedes <a href="{% url 'login' %}">Iniciar sesión</a>
+            </p>
+        </div>      
+      </div>
+    </div>
+  </div>
+{% endblock body %}
