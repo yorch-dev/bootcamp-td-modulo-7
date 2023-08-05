@@ -5,14 +5,17 @@ import datetime as dt
 # Create your models here.
 class Laboratorio(models.Model):
     nombre = models.CharField(max_length=50)
+    ciudad = models.CharField(max_length=50, default='No informada')
+    pais = models.CharField(max_length=50, default='No informado')
 
     def __str__(self):
         return self.nombre
 
 class DirectorGeneral(models.Model):
     nombre = models.CharField(max_length=50)
-    # laboratorio = models.ForeignKey(Laboratorio, on_delete=models.SET_NULL, blank=True, null=True)
     laboratorio = models.OneToOneField(Laboratorio, on_delete=models.SET_NULL, blank=True, null=True)
+    especialidad = models.CharField(max_length=50, default='No informada')
+
 
     class Meta:
         verbose_name = 'Director general'
