@@ -1,0 +1,15 @@
+.container {
+    border-style: outset;
+    border-width: 8px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 10px;
+
+}
+
+th, td {
+    border: 1px solid;
+    margin: 5px;
+}

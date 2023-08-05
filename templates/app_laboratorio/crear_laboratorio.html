@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% comment %} Bloque de links {% endcomment %}
+{% block links %}
+{% endblock links %}
+
+{% block title %}
+  {{ nombre }}
+{% endblock title %}
+
+{% block body %}
+
+  <h1 class="col-8 mx-auto"> Ingresar los Datos del Laboratorio </h1>
+
+  <div class="col-8 mx-auto">
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form | crispy }}
+    <input class="btn btn-secondary" type="submit" value="Enviar">
+    </form>
+  </div>
+
+{% endblock body %}
+
+{% comment %} Bloque de scripts {% endcomment %}
+{% block scripts %}
+{% endblock scripts %}
